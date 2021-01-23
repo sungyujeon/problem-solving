@@ -13,3 +13,16 @@
 <출력>
 첫째 줄부터 총 N개의 줄에 걸쳐 온라인 저지 회원을 나이 순, 나이가 같으면 가입한 순으로 한 줄에 한 명씩 나이와 이름을 공백으로 구분해 출력한다.
 '''
+import sys
+
+N = int(sys.stdin.readline())
+
+members = []
+for i in range(N):
+    age, name = sys.stdin.readline().split()
+    members.append((age, name, i))
+
+members.sort(key=lambda member: (int(member[0]), member[2]))
+
+for member in members:
+    print(member[0], member[1])
