@@ -1,11 +1,14 @@
-a = 1
+def arrange(h, n):
+    # 'xx호' (n // h) + 1 (호)
+    # 'yy층' (n % h) (층)
+    floor = n % h
+    ho = (n // h) + 1
+    
+    if ho < 10:
+        ho = '0' + str(ho)
 
-def func1():
-    a = 1
-    func2()
+    room_number = str(floor) + ho
+    return room_number
 
-def func2():
-    print(a, end='')
 
-func1()
-print(a)
+print(arrange(30, 72))
