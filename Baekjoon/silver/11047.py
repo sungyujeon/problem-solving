@@ -1,3 +1,6 @@
+# 백준 11047번 S1
+# 동전 0
+
 import sys
 
 input = sys.stdin.readline
