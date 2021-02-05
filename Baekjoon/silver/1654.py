@@ -1,17 +1,14 @@
 # 백준 1654번 S3
 # 랜선 자르기
-# import sys
+import sys
 
-# input = sys.stdin.readline
+input = sys.stdin.readline
 
-# k, n = map(int, input().split())
+k, n = map(int, input().split())
 
-# lines = []
-# for _ in range(k):
-#     lines.append(int(input()))
-
-k, n = 4, 11
-lines = [802, 743, 457, 539]
+lines = []
+for _ in range(k):
+    lines.append(int(input()))
 
 max_length = sum(lines) // n
 
@@ -25,9 +22,9 @@ def binary(start, end):
         cnt += line // mid
 
     if cnt >= n:
-        binary(mid+1, end)
+        return binary(mid+1, end)
     else:
-        binary(start, mid-1)
+        return binary(start, mid-1)
     
 
 print(binary(1, max_length))

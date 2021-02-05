@@ -19,5 +19,4 @@ for coin in coins:
     
     if not k:
         break
-
 print(cnt)
