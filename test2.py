@@ -1,3 +1,0 @@
-li = []
-
-print(li.pop())
