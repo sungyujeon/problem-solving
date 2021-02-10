@@ -1,5 +1,3 @@
-n, m = 4, 2
-idx = [i for i in range(n)]
-a = list(zip(idx, [1, 2, 3, 4]))
+apart = [[0 for j in range(3)] for i in range(2)]
 
-print(a)
+print(apart)
