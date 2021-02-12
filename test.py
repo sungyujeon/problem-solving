@@ -1,3 +1,4 @@
-apart = [[0 for j in range(3)] for i in range(2)]
+import heapq
 
-print(apart)
+heap = [4, 1, 2, 5]
+print(type(heapq.heapify(heap)))
