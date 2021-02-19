@@ -1,7 +1,6 @@
-li = [2]
 
-print(li)
+T = 2
+row = 5
 
-li.clear()
-
-print(li)
+for k in range(0, T*row, row):
+    print(k)
