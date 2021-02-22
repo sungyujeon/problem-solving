@@ -1,9 +1,3 @@
-# Algorithm 풀이
+# Algorithm / 
 
-> 파일명 규칙
-
-- `Prefix` : 알고리즘 사이트 abbr. 
-
-- `Suffix` : 문제 번호
-
-  e.g. b2108 >> Baekjoon 2108번 문제
+### 1일 1알고리즘 풀기를 실천하고 있습니다.
