@@ -1,5 +1,6 @@
-a = [2,5]
+d = {1, 2}
+e = {2, 3, 4}
 
-a.extend([2,5])
-
-print(a)
+d = d | e
+print(d)
+print(e)
