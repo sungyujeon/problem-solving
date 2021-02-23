@@ -1,6 +1,5 @@
-d = {1, 2}
-e = {2, 3, 4}
+li = [1, 3, 5, 7]
 
-d = d | e
-print(d)
-print(e)
+li.remove(3) # ele 삭제
+print(li.index(5))  # ele idx 반환
+print(li)
