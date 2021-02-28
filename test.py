@@ -1,9 +1,10 @@
-a = [4, 4, 2,4]
+import heapq
 
-max_h = max(a)
-print(a.count(max_h))
+h = [1,-2,3,4]
 
-if a.count(max_h) > 1 and a.index(max_h):
-    pass
+heapq.heapify(h)
+print(h)
 
-    
+h2 = list(map(lambda x: x * (-1), h))
+heapq.heapify(h2)
+print(h2)
