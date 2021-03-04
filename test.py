@@ -1,7 +1,4 @@
-from collections import deque
+a = '555'
 
-q = deque()
-q.append(1)
-q.append(2)
 
-print(q.popleft())
+print(a.find('6'))
