@@ -1,3 +1,5 @@
-t = '5+5+1'
+i = '111'
 
-print(t.find('-'))
+i = list(map(int, i))
+
+print(i)
