@@ -2,37 +2,28 @@
 # 패션왕 신해빈
 
 import sys
+# input = sys.stdin.readline
 sys.stdin = open('input.txt', 'r')
 
-from itertools import permutations
+from itertools import combinations
+from collections import Counter
 
 T = int(input())
 
-# n = 3
-# clothes = {
-#     1: [1,2,3],
-#     2: [2,3],
-#     3: [1],
-# }
 for _ in range(T):
     n = int(input())
-    clothes = {}
+    c = []
     for _ in range(n):
         a, b = input().rstrip().split()
+        c.append(b)
+    
+    li = dict(Counter(c))
+    li = li.values()
         
-        try:
-            clothes[b].append(a)
-        except:
-            clothes[b] = [a]
-
-    cnt = len(clothes)
-    li = []
-    for v in clothes.values():
-        li.append(len(v))
 
     res = 0
-    for i in range(1, cnt+1):
-        perm = list(permutations(li, i))
+    for i in range(1, len(li)+1):
+        perm = list(combinations(li, i))
         for j in perm:
             tmp = 1
             for k in j:

@@ -1,6 +1,9 @@
-import sys
+from collections import Counter
 
-for i in range(1, 1 << 3):
-    for j in range(3):
-        if i & (1 << j):
-            print()
+li = [1,2,1,1,1,3]
+
+
+a = Counter(li)
+
+print(a)
+
