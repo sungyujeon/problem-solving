@@ -2,8 +2,8 @@
 # 패션왕 신해빈
 
 import sys
-# input = sys.stdin.readline
-sys.stdin = open('input.txt', 'r')
+input = sys.stdin.readline
+# sys.stdin = open('input.txt', 'r')
 
 from itertools import combinations
 from collections import Counter
