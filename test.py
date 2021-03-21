@@ -1,5 +1,3 @@
-from collections import deque
+a = '3421'
 
-dq = deque([1,2,3,4,5])
-
-dq.popleft()
+print(list(map(int, a)))
