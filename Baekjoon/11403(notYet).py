@@ -27,19 +27,21 @@ def dfs(i, j, li, res, n):
 
     while stack:
         node = stack.pop()
+        res[i][node] = 1
         visited[node] = True
         
         for k in range(n):
             if res[node][k]:
                 if cnt_flag and k == i:
                     res[i][i] = 1
-                    return 
                 if not visited[k]:
                     stack.append(k)
 
         if not cnt_flag:
             cnt_flag = True
-            
+    
+    return False
+
 
 n = int(input())
 li = [list(map(int, input().split())) for _ in range(n)]
@@ -54,7 +56,9 @@ for i in range(n):
 
 for i in range(n):
     for j in range(n):
-        if li[i][j]:
-            dfs(i, j, li, res, n)
+        if res[i][j]:
+            tmp_flag = dfs(i, j, li, res, n)
+            if tmp_flag:
+                break
 
 print(res)
