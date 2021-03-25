@@ -1,12 +1,11 @@
 # 백준 1157번 B1
-# 단어 공부
+# 단어 공부]
 
+# sys.stdijn k= open('input.txt', 'r')
 import sys
-# sys.stdin = open('input.txt', 'r')
 input = sys.stdin.readline
 
 s = map(lambda x: x.upper(), list(input().rstrip()))
-
 
 dic = {}
 for c in s:
@@ -31,6 +30,3 @@ if flag:
     print('?')
 else:
     print(res.upper())
-
-
-        
