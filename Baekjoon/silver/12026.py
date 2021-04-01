@@ -1,36 +1,79 @@
 # 백준 12026번 S1
 # BOJ 거리
-
 import sys
 input = sys.stdin.readline
 
-def dfs(_way, _n):
-    stack = [('B', 0)]
-    depth= 0
+n = int(input())
+block = input().rstrip()
+max_value = 987654321
+dp = [0] + [max_value] * (n-1)
 
-    while stack:
-        char, idx = stack.pop()
-        
-        if idx == _n:  # 끝까지 옴
-            pass
-        else:
-            if char == 'B':
-                for i in range(i+1, _n):
-                    if _way[i] == 'O':  # 갈 수 있으면
-                        stack.append(('O', i))
-                    else:
-                        if i == _n:
-                            break
-                else:  # 중간에 갈 곳이 있음
-                    pass
+def get_prev(_c):
+    if _c == 'B':
+        return 'J'
+    elif _c == 'O':
+        return 'B'
+    else:
+        return 'O'
 
-            elif char == 'O':
-                pass
-            else:  # 'J'
-                pass
+
+for i in range(1, n):
+    c = get_prev(block[i])
+    for j in range(i):
+        if block[j] == c:
+            dp[i] = min(dp[i], dp[j] + (i-j) ** 2)
+
+res = dp[i] if dp[n-1] != max_value else -1
+print(res)
+
+
+# res_energy = 1000000
+# def boj_dist(_s, _n, _flag, _start, _end, _energy):
+#     global res_energy
+
+#     check = False
+#     if _end == _n:
+#         if res_energy > _energy:
+#             res_energy = _energy
+#         return True
+
+#     if _flag == 'B':  # next -> O
+#         while _end < _n:
+#             if _s[_end] == 'O':
+#                 tmp_energy = (_end - _start) ** 2
+#                 check = boj_dist(_s, _n, _s[_end], _end, _end+1, _energy+tmp_energy)
+#             _end += 1
+#     elif _flag =='O':  # next -> J
+#         while _end < _n:
+#             if _s[_end] == 'J':
+#                 tmp_energy = (_end - _start) ** 2
+#                 check = boj_dist(_s, _n, _s[_end], _end, _end+1, _energy+tmp_energy)
+#             _end += 1
+#     else:  # next -> B
+#         while _end < _n:
+#             if _s[_end] == 'B':
+#                 tmp_energy = (_end - _start) ** 2
+#                 check = boj_dist(_s, _n, _s[_end], _end, _end+1, _energy+tmp_energy)
+#             _end += 1
+
+#     if check:
+#         return True
+#     else:
+#         return False
     
 
+# n = int(input())
+# block = input().rstrip()
 
 
-n = int(input())
-way = list(input().rstrip())
+# flag = 'B'
+# start = 0
+# end = 1
+# energy = 0
+
+# res_check = boj_dist(block, n, flag, start, end, energy)
+# if res_check:
+#     print(res_energy)
+# else:
+#     print(-1)
+
