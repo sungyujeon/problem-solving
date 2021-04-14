@@ -64,10 +64,7 @@ def f(n, m):
                 ratio = cnt[0]*1000 + cnt[1]*100 + cnt[2]*10 + cnt[3]
                 p[k] = code_dict.get(ratio)
 
-                if 
-
-        
-
+                
 
 T = int(input())
 for tc in range(1, T+1):
