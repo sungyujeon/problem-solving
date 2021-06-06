@@ -38,7 +38,7 @@ def bfs(start):
 
     return root
 
-res = bfs(X)
+res = sorted(bfs(X))
 if not res:
     print(-1)
 else:
