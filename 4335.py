@@ -6,6 +6,7 @@
 #2 다음 상자의 x, y, z 조합이 이전 상자의 (가로 x 세로)에 들어갈 수 있는지 확인
 #3 모든 상자의 경우를 따졌을 경우 return
 
+
 import sys
 sys.stdin = open('input.txt', 'r')
 input = sys.stdin.readline
