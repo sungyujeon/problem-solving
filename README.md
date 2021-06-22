@@ -1,3 +1,3 @@
-# Algorithm / 
+# Algorithm
 
 ### 1일 1알고리즘 풀기를 실천하고 있습니다.
