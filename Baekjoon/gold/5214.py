@@ -3,59 +3,61 @@
 # sys.stdin = open('input.txt', 'r')
 
 import sys
-import heapq
-from collections import deque
 input = sys.stdin.readline
 
-# INF = 100001
 N, K, M = map(int, input().split())
-stations = [[] for _ in range(N+1)]
+station_list = [[] for _ in range(N+1)]
 hyper_list = [[] for _ in range(M)]
 
 for i in range(M):
     tmp_stns = list(map(int, input().split()))
     hyper_list[i] = tmp_stns
     for stn in tmp_stns:
-        stations[stn].append(i)
+        station_list[stn].append(i)
 
 def bfs():
     visited_hypers = [False] * M
-    visited = [False] * (N+1)
-    visited[1] = True
-    li = [stations[1]]
+    visited_stns = [False] * (N+1)
+    visited_stns[1] = True
+    stack = [station_list[1]]
     cnt = 0
 
-    while li:
-        hypers = li.pop()
-        tmp_q = set([])
+    while stack:
+        hypers = stack.pop()
+        tmp_stns = set([])
         cnt += 1
 
         while hypers:
-            _hyper = hypers.pop()
+            hyper = hypers.pop()
             stns = []
-            if not visited_hypers[_hyper]:
-                visited_hypers[_hyper] = True    
-                stns = hyper_list[_hyper]
+            if not visited_hypers[hyper]:
+                visited_hypers[hyper] = True    
+                stns = hyper_list[hyper]
             
             for stn in stns:
                 # res
                 if stn == N:
                     return cnt + 1
 
-                if not visited[stn]:
-                    visited[stn] = True
-                    tmp_q.add(stn)
+                if not visited_stns[stn]:
+                    visited_stns[stn] = True
+                    tmp_stns.add(stn)
         
-        if tmp_q:
+        if tmp_stns:
             tmp_hypers = set([])
-            for stn in tmp_q:
-                tmp_hypers.update(stations[stn])
-            li.append(tmp_hypers)
+            for stn in tmp_stns:
+                tmp_hypers.update(station_list[stn])
+            stack.append(tmp_hypers)
     
     return -1            
-            
-res = bfs()
-print(res)
+
+        
+if N == 1:
+    print(1)
+    exit()
+else:
+    res = bfs()
+    print(res)
 
 # 일반적 계산
 # INF = 100001
