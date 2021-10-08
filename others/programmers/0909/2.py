@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 direction = {
     0: [0, 1],
     1: [0, -1],
@@ -7,40 +9,42 @@ direction = {
 
 
 def setArray(grid):
-    _n = len(grid)
-    _array = [['' for _ in range(_n+2)] for _ in range(_n+2)]
-    _outUsed = [['' for _ in range(_n+2)] for _ in range(_n+2)]
+    _ni = len(grid)
+    _nj = len(grid[0])
 
-    for i in range(1, _n+1):
-        for j in range(1, _n+1):
+    _array = [['' for _ in range(_nj+2)] for _ in range(_ni+2)]
+    _outUsed = [['' for _ in range(_nj+2)] for _ in range(_ni+2)]
+
+    for i in range(1, _ni+1):
+        for j in range(1, _nj+1):
             _array[i][j] = grid[i-1][j-1]
             _outUsed[i][j] = [False] * 4
 
     return [_array, _outUsed]
 
 
-def isInBound(_i, _j, _n):
-    li = [0, _n-1]
-    if (_i in li or _j in li):
-        return False
-    return True
+def isInBound(_i, _j, ni2, nj2):
+    if (1 <= _i < ni2-1 and 1 <= _j < nj2-1):
+        return True
+    return False
 
 
-def setNextIJ(ci, cj, k, n):
+def setNextIJ(ci, cj, k, ni2, nj2):
     _d = direction[k]
     ni = ci + _d[0]
     nj = cj + _d[1]
 
-    if not isInBound(ni, nj, n):  # ni, nj가 범위 안이면
+    if not isInBound(ni, nj, ni2, nj2):  # ni, nj가 범위 안이면
         if k == 0:
             nj = 1
         elif k == 1:
-            nj = n - 2
+            nj = nj2 - 2
         elif k == 2:
             ni = 1
         else:
-            ni = n - 2
+            ni = ni2 - 2
 
+        return [ni, nj]
     return [ni, nj]
 
 
@@ -71,37 +75,42 @@ def getDir(_i, _j, array, k):
     return nextK
 
 
-def dfs(ci, cj, k, n, array, outUsed, res):
-    if outUsed[ci][cj][k]:
+def dfs(ci, cj, k, ni2, nj2, array, outUsed, tmpOutUsed, res):
+    if tmpOutUsed[ci][cj][k]:
         return res
     else:
+        tmpOutUsed[ci][cj][k] = True
         outUsed[ci][cj][k] = True
 
-        _d = direction[k]
-        [ni, nj] = setNextIJ(ci, cj, k, n)
-
+        [ni, nj] = setNextIJ(ci, cj, k, ni2, nj2)
+        
         k = getDir(ni, nj, array, k)
-        return dfs(ni, nj, k, n, array, outUsed, res+1)
+        return dfs(ni, nj, k, ni2, nj2, array, outUsed, tmpOutUsed, res+1)
+
 
 
 def solution(grid):
-    gn = len(grid)
-    n = gn + 2
+    gni = len(grid)
+    gnj = len(grid[0])
+    ni2 = gni + 2
+    nj2 = gnj + 2
     res = []
     [array, outUsed] = setArray(grid)
     currDir = [0, 0]
 
-    for i in range(1, gn+1):
-        for j in range(1, gn+1):
+    for i in range(1, gni+1):
+        for j in range(1, gnj+1):
             # 현재 -> 다음 out
             for k in range(4):
-                r = dfs(i, j, k, n, array, outUsed, 0)
-                if r != 0:
-                    res.append(r)
+                if not outUsed[i][j][k]:
+                    tmpOutUsed = deepcopy(outUsed)
+                    r = dfs(i, j, k, ni2, nj2, array, outUsed, tmpOutUsed, 0)
+                    if r != 0:
+                        res.append(r)
 
     return res
 
 
-grid = ["SL", "LR"]
+grid = ["SSL", "RRR"]
 # grid = ["S"]
 print(solution(grid))
