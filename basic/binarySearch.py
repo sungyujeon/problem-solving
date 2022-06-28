@@ -28,3 +28,49 @@ x = 4
 print(bisect_left(a, x))  # 2
 print(bisect_right(a, x)) # 4
 
+# parametric search
+# 최적화 문제를 결정 문제(yes or no)로 바꾸어 해결하는 기법
+# e.g. 특정한 조건을 만족하는 가장 알맞은 값을 빠르게 찾는 최적화 문제
+
+
+#1 떡볶이 떡 만들기
+def solution1(N, M, arr):
+    res = 0
+    target, start, end = M, 0, max(arr)
+    
+    while start <= end:
+        mid = (start + end) // 2
+        remain = getRemain(mid, arr)
+        
+        if remain >= target:
+            res = mid
+            start = mid + 1
+        else:
+            end = mid - 1
+    
+    return res
+
+def getRemain(h, arr):
+    total = 0
+    for val in arr:
+        if val > h:
+            total += val - h
+    return total
+
+N, M = 4, 6
+arr = [19, 15, 10, 17]
+print(solution1(N, M, arr))
+
+
+#2 정렬된 배열에서 특정 수의 개수 구하기
+# N개 원소 오름차순 정렬, x가 등장하는 횟수 계산
+# 시간복잡도 O(logN)
+def solution2(n, x, arr):
+    left_idx = bisect_left(arr, x)
+    right_idx = bisect_right(arr, x)
+    
+    return right_idx - left_idx
+
+n, x = 7, 2
+arr = [1, 1, 2, 2, 2, 2, 3]
+print(solution2(n, x, arr))
